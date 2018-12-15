@@ -123,6 +123,7 @@ services:
 * **WEBROOT_PATH** Path to the letsencrypt directory in the web server for checks. Defaults to `/var/www`.
 * **CERTS_PATH**: Optional. Copy the new certificates to the specified path. e.g. `/etc/nginx/certs`.
 * **SERVER_CONTAINER**: Optional. The Docker container name of the server you wish to send a `HUP` signal to in order to reload its configuration and use the new certificates.
+* **SERVER_CONTAINER_LABEL**: Optional. The Docker container label of the server you wish to send a `HUP` signal to in order to reload its configuration and use the new certificates. This environment variable will be helpfull in case of deploying with docker swarm since docker swarm will create container name itself.
 * **CHECK_FREQ**: How often (in days) to perform checks. Defaults to `30`.
 
 #### License
