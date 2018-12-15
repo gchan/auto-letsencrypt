@@ -37,6 +37,13 @@ check() {
     eval docker kill -s HUP $SERVER_CONTAINER
   fi
 
+  if [ "$SERVER_CONTAINER_LABEL" ]; then
+    echo "* Reloading Nginx configuration for label $SERVER_CONTAINER_LABEL"
+
+    container_id=`docker ps --filter label=$SERVER_CONTAINER_LABEL -q`
+    eval docker kill -s HUP $container_id
+  fi
+
   echo "* Next check in $CHECK_FREQ days"
   sleep ${CHECK_FREQ}d
   check
