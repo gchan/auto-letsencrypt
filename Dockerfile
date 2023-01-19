@@ -1,4 +1,4 @@
-FROM certbot/certbot:v1.7.0
+FROM certbot/certbot:v2.1.1
 
 RUN apk update && apk add --no-cache docker-cli bash
 ADD entrypoint.sh .

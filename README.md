@@ -56,7 +56,7 @@ Provide a number to the `CHECK_FREQ` environment variable to adjust how often it
 #### An example using all of the features
 
 ```
-docker run -d
+docker run -d \
   -e 'DOMAINS=example.com www.example.com' \
   -e EMAIL=elliot@allsafe.com \
   -e NGINX_CONTAINER=nginx \
@@ -128,7 +128,22 @@ services:
 
 #### License
 
-Copyright (c) 2016 Gordon Chan. Released under the MIT License. It is free software, and may be redistributed under the terms specified in the [LICENSE](https://github.com/gchan/dockerfiles/blob/master/LICENSE.txt) file.
+Copyright (c) 2023 steniak. Released under the MIT License. It is free software, and may be redistributed under the terms specified in the [LICENSE](https://github.com/steniak/auto-letsencrypt/LICENSE.txt) file.
 
 [![Analytics](https://ga-beacon.appspot.com/UA-70790190-2/dockerfiles/auto-letsencrypt/README.md?flat)](https://github.com/igrigorik/ga-beacon)
 
+
+
+
+docker run -d \
+  -e 'DOMAINS=steniak.info' \
+  -e EMAIL=steniak@gmail.com \
+  -v /etc/letsencrypt:/etc/letsencrypt \
+  -v /var/lib/letsencrypt:/var/lib/letsencrypt \
+  -v /tmp/letsencrypt:/var/www \
+  steniak/auto-letsencrypt
+
+  certbot certonly --webroot --agree-tos --noninteractive --text --expand \
+      --email steniak@gmail.com \
+      --webroot-path '/var/www' \
+      'steniak.info'
