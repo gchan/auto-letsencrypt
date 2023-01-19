@@ -30,7 +30,7 @@ Run this image:
 ```
 docker run -d
   -e 'DOMAINS=example.com www.example.com' \
-  -e EMAIL=elliot@allsafe.com \
+  -e EMAIL=mail@mail.com \
   -v /etc/letsencrypt:/etc/letsencrypt \
   -v /var/lib/letsencrypt:/var/lib/letsencrypt \
   -v /tmp/letsencrypt:/var/www \
@@ -70,6 +70,14 @@ docker run -d \
   -v /tmp/letsencrypt:/var/www \
   -v /etc/nginx/certs:/etc/nginx/certs \
   gordonchan/auto-letsencrypt
+```
+
+#### Manualy trigger certificate in container
+```
+  certbot certonly --webroot --agree-tos --noninteractive --text --expand \
+      --email mail@mail.com \
+      --webroot-path '/var/www' \
+      'example.com www.example.com'
 ```
 
 #### An example using Docker Compose
@@ -134,16 +142,3 @@ Copyright (c) 2023 steniak. Released under the MIT License. It is free software,
 
 
 
-
-docker run -d \
-  -e 'DOMAINS=steniak.info' \
-  -e EMAIL=steniak@gmail.com \
-  -v /etc/letsencrypt:/etc/letsencrypt \
-  -v /var/lib/letsencrypt:/var/lib/letsencrypt \
-  -v /tmp/letsencrypt:/var/www \
-  steniak/auto-letsencrypt
-
-  certbot certonly --webroot --agree-tos --noninteractive --text --expand \
-      --email steniak@gmail.com \
-      --webroot-path '/var/www' \
-      'steniak.info'
